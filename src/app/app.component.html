@@ -47,11 +47,11 @@
           <div class="form-group"><input type="number" class="form-control form-control-lg" name="limit" placeholder="Limit" [(ngModel)]="limit" aria-describedby="limit"></div>
         </div>
       </div>
-      <button type="submit" class="btn btn-secondary btn-lg btn-block btn-hit" (click)="getHitCount()">Submit</button>
+      <button type="submit" class="btn btn-secondary btn-lg btn-block btn-hit" (click)="getHitCount()">Get Hits</button>
     </form>
   </div>
 
-  <div class="container" style="margin-top: 20px">
+  <div class="container" style="margin-top: 20px" *ngIf="hitCounts">
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -60,9 +60,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>11111</td>
-          <td>19</td>
+        <tr *ngFor="let data of hitCounts">
+          <td>{{ data.cardNumber }}</td>
+          <td>{{ data.hits }}</td>
         </tr>
       </tbody>
     </table>

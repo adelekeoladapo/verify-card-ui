@@ -16,13 +16,15 @@ export class AppComponent {
   cardDetails: Card;
   // Hit count
   start = 1;
-  limit = 5;
+  limit = 3;
+  hitCounts: HitCount[];
 
   constructor(private cardService: CardService) {}
 
   submitCardForVerification(): void {
     $('.btn-verify').attr('disabled', 'disabled').html('Please wait...');
     this.cardDetails = null;
+    this.hitCounts = null;
     this.cardService.verifyCard(this.cardNumber).subscribe(data => {
       if (data.success) {
         this.cardDetails = data.payload;
@@ -37,7 +39,15 @@ export class AppComponent {
     $('.btn-hit').attr('disabled', 'disabled').html('Please wait...');
     this.cardService.getHitCount(this.start, this.limit).subscribe(data => {
       if (data.success) {
-        // Todo: populate table
+        const keys = Object.keys(data.payload);
+        const values = Object.values(data.payload);
+        this.hitCounts = new Array(keys.length);
+        for (let i = 0; i < keys.length; i++) {
+          const hitcount: HitCount = new HitCount();
+          hitcount.cardNumber = keys[i];
+          hitcount.hits = values[i];
+          this.hitCounts[i] = hitcount;
+        }
       } else {
         alert(data.message);
       }
