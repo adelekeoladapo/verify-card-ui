@@ -35,9 +35,15 @@
   padding-left: 0;
 }
 
-.well ul li {}
+.well ul li {
+  font-size: 25px;
+  margin-top: 10px;
+}
 
-.well ul li span {}
+.well ul li span {
+  color: #aaa;
+  margin-right: 20px;
+}
 
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
