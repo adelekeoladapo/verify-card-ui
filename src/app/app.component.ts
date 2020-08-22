@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {CardService} from './services/card.service';
 import {Card} from './dto/Card';
+import {HitCount} from './dto/HitCount';
 
 declare var $: any;
 
@@ -35,14 +36,14 @@ export class AppComponent {
   getHitCount(): void {
     $('.btn-hit').attr('disabled', 'disabled').html('Please wait...');
     this.cardService.getHitCount(this.start, this.limit).subscribe(data => {
-      console.log(data);
-      // if (data.success) {
-      //   this.cardDetails = data.payload;
-      // } else {
-      //   alert(data.message);
-      // }
-      $('.btn-hit').removeAttr('disabled').html('Verify');
+      if (data.success) {
+        // Todo: populate table
+      } else {
+        alert(data.message);
+      }
+      $('.btn-hit').removeAttr('disabled').html('Get Hits');
     });
   }
 
 }
+

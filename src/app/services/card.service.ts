@@ -3,6 +3,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {CardServiceResponse} from '../dto/CardServiceResponse';
 import {Observable} from 'rxjs';
+import {HitCountServiceResponse} from '../dto/HitCountServiceResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class CardService {
     return this.http.get<CardServiceResponse>(this.baseUrl + '/verify/' + cardNumber);
   }
 
-  public getHitCount(start: number, limit: number): Observable<CardServiceResponse> {
-    return this.http.get<CardServiceResponse>(this.baseUrl + '/stats?start=' + start + '&limit=' + limit);
+  public getHitCount(start: number, limit: number): Observable<HitCountServiceResponse> {
+    return this.http.get<HitCountServiceResponse>(this.baseUrl + '/stats?start=' + start + '&limit=' + limit);
   }
 
 }
